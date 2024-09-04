@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node build",
-    "build": "echo hello",
-    "dev": "tsc-watch --onSuccess \"npm start\" "
+    "build": "tsc",
+    "dev": "tsc-watch --onSuccess \"npm start\" ",
+    "vercel-build": "echo build"
   },
   "author": "Damanjeet Singh",
   "license": "ISC",
