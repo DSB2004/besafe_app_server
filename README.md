@@ -2,6 +2,7 @@
 This documentation includes the API endpoint details for the women/child safety app. Please refer to it for any issues or clarifications.
 
 
+
 ## Run Locally
 
 
@@ -35,7 +36,8 @@ npm run start
 ```
 
 ## API Reference
-
+#### Base URL
+https://besafe-app-server-git-main-damanjeet-singhs-projects-0c53512a.vercel.app
 ### Auth API
 #### For testing 
 
