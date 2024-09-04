@@ -37,7 +37,7 @@ npm run start
 
 ## API Reference
 #### Base URL
-https://besafe-app-server-git-main-damanjeet-singhs-projects-0c53512a.vercel.app
+https://besafe-app-server.vercel.app
 ### Auth API
 #### For testing 
 
