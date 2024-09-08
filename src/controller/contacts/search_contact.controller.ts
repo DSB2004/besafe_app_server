@@ -3,28 +3,24 @@ import DATABASE_INSTANCE from "../../database";
 import { Request, Response } from "express";
 import { PoolConnection } from "mysql";
 
+const USER_SEARCH_QUERY = "SELECT NAME, EMAIL, PHONE FROM USER WHERE UPPER(SUBSTR(NAME, 1, LENGTH(?))) = UPPER(?);";
 
-const CONTACT_ADD_QUERY = "DELETE FROM CONTACTS WHERE HOST_EMAIL=? AND CONTACT_EMAIL=?;";
-
-
-const REMOVE_CONTACT = async (req: Request, res: Response) => {
+const SEARCH_CONTACTS = async (req: Request, res: Response) => {
     const url_query = req.query;
     let connection: PoolConnection | undefined;
-    const host_email = url_query.host_email;
-    const contact_email = url_query.contact_email;
+    const name = url_query.name;
 
-
-
-    if (!host_email || !contact_email) {
-        return res.status(400).send({ msg: "Fields missing" });
+    if (!name) {
+        return res.status(400).send({ msg: "Name missing" });
     }
 
     try {
         connection = await GET_CONNECTION(DATABASE_INSTANCE);
-        await QUERY(connection, CONTACT_ADD_QUERY, [host_email, contact_email]);
-        return res.status(410).send({ msg: "contact removed" })
+        const users = await QUERY(connection, USER_SEARCH_QUERY, [name, name]);
+        return res.status(200).send({ data: users, msg: "Users found" })
     }
     catch (err) {
+        console.log(err)
         if (!connection) {
             return res.status(500).send({ msg: "database connection error" });
         }
@@ -43,4 +39,4 @@ const REMOVE_CONTACT = async (req: Request, res: Response) => {
 
 }
 
-export default REMOVE_CONTACT;
+export default SEARCH_CONTACTS;
