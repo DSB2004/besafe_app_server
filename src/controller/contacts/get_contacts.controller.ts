@@ -17,7 +17,7 @@ const GET_CONTACTS = async (req: Request, res: Response) => {
     try {
         connection = await GET_CONNECTION(DATABASE_INSTANCE);
         const contacts = await QUERY(connection, CONTACT_DETAILS_QUERY, [email]);
-        return res.status(201).send({ data: contacts, msg: "User contacts" })
+        return res.status(200).send({ data: contacts, msg: "User contacts" })
     }
     catch (err) {
 
